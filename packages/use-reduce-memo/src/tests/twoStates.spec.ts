@@ -1,9 +1,9 @@
 import { scenario } from '@testduet/given-when-then';
-import { cleanup, render } from '@testing-library/react';
+import { act, cleanup, render } from '@testing-library/react';
 import { expect } from 'expect';
 import * as nodeTest from 'node:test';
 import { mock } from 'node:test';
-import { act, createElement, Fragment, useState } from 'react';
+import { createElement, Fragment, useState } from 'react';
 import useReduceMemo from '../useReduceMemo.ts';
 
 scenario(

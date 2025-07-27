@@ -1,28 +1,38 @@
 import useMemoWithPrevious from './private/useMemoWithPrevious.ts';
 
 interface Reducer<T, U, V extends U | undefined = U | undefined> {
-  (previousValue: V, currentValue: T, currentIndex: number, array: readonly T[]): U;
+  (previousValue: V, currentValue: T, currentIndex: number, array: readonly T[] | Iterable<T>): U;
 }
 
-type Entry<T, U> = Readonly<{
-  callbackfn: Reducer<T, U | undefined, U>;
-  input: T;
-  output: U | undefined;
-}>;
+type Entry<T, U> = {
+  readonly callbackfn: Reducer<T, U | undefined, U>;
+  readonly input: T;
+  readonly output: U | undefined;
+};
 
 function useReduceMemo<T>(
-  array: readonly T[],
-  callbackfn: (previousValue: T | undefined, currentValue: T, currentIndex: number, array: readonly T[]) => T
+  array: readonly T[] | Iterable<T>,
+  callbackfn: (
+    previousValue: T | undefined,
+    currentValue: T,
+    currentIndex: number,
+    array: readonly T[] | Iterable<T>
+  ) => T
 ): T | undefined;
 
 function useReduceMemo<T, U>(
-  array: readonly T[],
-  callbackfn: (previousValue: U | undefined, currentValue: T, currentIndex: number, array: readonly T[]) => U
+  array: readonly T[] | Iterable<T>,
+  callbackfn: (
+    previousValue: U | undefined,
+    currentValue: T,
+    currentIndex: number,
+    array: readonly T[] | Iterable<T>
+  ) => U
 ): U | undefined;
 
 function useReduceMemo<T, U>(
-  array: readonly T[],
-  callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: readonly T[]) => U,
+  array: readonly T[] | Iterable<T>,
+  callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: readonly T[] | Iterable<T>) => U,
   initialValue: U
 ): U;
 
@@ -49,38 +59,54 @@ function useReduceMemo<T, U>(
  */
 // TODO: Should we have a `useBuildReducer()` hook which, `useBuildReducer(reducer, 0)([1, 2, 3])`?
 function useReduceMemo<T, U>(
-  array: readonly T[],
-  callbackfn: (previousValue: U | undefined, currentValue: T, currentIndex: number, array: readonly T[]) => U,
+  array: readonly T[] | Iterable<T>,
+  callbackfn: (
+    previousValue: U | undefined,
+    currentValue: T,
+    currentIndex: number,
+    array: readonly T[] | Iterable<T>
+  ) => U,
   initialValue?: U | undefined
 ): U | undefined {
   const state = useMemoWithPrevious<readonly Entry<T, U>[]>(
     (state = Object.freeze([])) => {
-      let changed = array.length !== state.length;
+      let changed = false;
       let prevValue: U | undefined = initialValue;
       let shouldRecompute = false;
 
-      const nextState = array.map<Entry<T, U>>((value, index) => {
+      let index = 0;
+      let nextState: Entry<T, U>[] = [];
+
+      for (const value of array) {
         const entry = state[+index];
 
         if (!shouldRecompute && entry && Object.is(entry?.input, value) && Object.is(entry?.callbackfn, callbackfn)) {
           prevValue = entry?.output;
 
           // Skips the activity if it has been reduced in the past render loop.
-          return entry;
+          nextState.push(entry);
+        } else {
+          changed = true;
+          shouldRecompute = true;
+
+          nextState.push(
+            Object.freeze({
+              callbackfn,
+              input: value,
+              output: (prevValue = callbackfn(prevValue, value, index, array))
+            })
+          );
         }
 
-        changed = true;
-        shouldRecompute = true;
+        index++;
+      }
 
-        return Object.freeze({
-          callbackfn,
-          input: value,
-          output: (prevValue = callbackfn(prevValue, value, index, array))
-        });
-      });
+      if (nextState.length !== state.length) {
+        changed = true;
+      }
 
       // Returns the original array if nothing changed.
-      return changed ? nextState : state;
+      return changed ? Object.freeze(nextState) : state;
     },
     [array, callbackfn]
   );

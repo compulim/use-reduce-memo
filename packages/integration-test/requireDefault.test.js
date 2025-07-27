@@ -1,30 +1,22 @@
+const testFacility = require('@jest/globals');
 const { scenario } = require('@testduet/given-when-then');
 const { expect } = require('expect');
-const nodeTest = require('node:test');
 const { mock } = require('node:test');
 const { useReduceMemo } = require('use-reduce-memo');
+const { renderHook } = require('./renderHook');
 
 scenario(
   'basic scenario',
   bdd =>
     bdd
-      .given('renderHook', () => {
-        const renderHook =
-          // @ts-ignore
-          require('@testing-library/react').renderHook ||
-          // @ts-ignore
-          require('@testing-library/react-hooks').renderHook;
-
-        return { renderHook };
-      })
-      .and('a summation reducer', ({ renderHook }) => ({
+      .given('a summation reducer', () => ({
         reducer: mock.fn((result, value) => value + result),
         renderHook
       }))
 
       // ---
 
-      .when('rendered with [1, 2, 3]', ({ reducer, renderHook }) =>
+      .when('rendered with [1, 2, 3]', ({ reducer }) =>
         renderHook(({ array, reducer }) => useReduceMemo(array, reducer, 0), {
           initialProps: { array: [1, 2, 3], reducer }
         })
@@ -38,5 +30,5 @@ scenario(
           [3, 3, 2, [1, 2, 3]]
         ])
       ),
-  nodeTest
+  testFacility
 );

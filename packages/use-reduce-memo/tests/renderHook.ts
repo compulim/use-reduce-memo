@@ -1,3 +1,1 @@
-import { renderHook } from '@testing-library/react';
-
-export { renderHook };
+export { renderHook } from '@testing-library/react';

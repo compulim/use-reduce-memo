@@ -14,7 +14,7 @@
     "pretest": "if test \"$CI\" = \"true\"; then npm run build; npm run docker -- --detach --wait; fi",
     "switch": "npm run switch:react && npm run switch:testing-library",
     "switch:react": "cat package.json | jq --arg SWITCH_NAME $SWITCH_NAME -r '(.[\"switch:\" + $SWITCH_NAME] // {}) as $TEMPLATE | .devDependencies += ($TEMPLATE.devDependencies // {}) | .dependencies += ($TEMPLATE.dependencies // {})' | tee ./package.json.tmp && mv ./package.json.tmp ./package.json",
-    "switch:testing-library": "cp ./renderHook.$SWITCH_NAME.ts ./renderHook.ts",
+    "switch:testing-library": "cp ./renderHook.$SWITCH_NAME.cjs ./renderHook.cjs && cp ./renderHook.$SWITCH_NAME.mjs ./renderHook.mjs",
     "test": "jest"
   },
   "author": "William Wong (https://github.com/compulim)",

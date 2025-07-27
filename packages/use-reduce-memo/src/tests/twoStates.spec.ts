@@ -4,14 +4,7 @@ import { expect } from 'expect';
 import * as nodeTest from 'node:test';
 import { mock } from 'node:test';
 import { act, createElement, Fragment, useState } from 'react';
-import { importRenderHook, type RenderHook } from '../../importRenderHook.ts';
 import useReduceMemo from '../useReduceMemo.ts';
-
-let renderHook: RenderHook;
-
-nodeTest.beforeEach(async () => {
-  renderHook = await importRenderHook();
-});
 
 scenario(
   'call twice with array with same content',

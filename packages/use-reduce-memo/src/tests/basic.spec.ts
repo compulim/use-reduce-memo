@@ -1,9 +1,15 @@
 import { scenario } from '@testduet/given-when-then';
-import { renderHook } from '@testing-library/react';
 import { expect } from 'expect';
 import * as nodeTest from 'node:test';
 import { mock } from 'node:test';
+import { importRenderHook, type RenderHook } from '../../importRenderHook.ts';
 import useReduceMemo from '../useReduceMemo.ts';
+
+let renderHook: RenderHook;
+
+nodeTest.beforeEach(async () => {
+  renderHook = await importRenderHook();
+});
 
 scenario(
   'basic scenario',

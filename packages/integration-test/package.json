@@ -22,6 +22,8 @@
   },
   "switch:react-16": {
     "devDependencies": {
+      "@testing-library/react": "^12",
+      "@testing-library/react-hooks": "latest",
       "@types/react": "^16",
       "react": "16.8.0",
       "react-test-renderer": "16.8.0"
@@ -29,6 +31,8 @@
   },
   "switch:react-17": {
     "devDependencies": {
+      "@testing-library/react": "^12",
+      "@testing-library/react-hooks": "latest",
       "@types/react": "^17",
       "react": "17.0.0",
       "react-test-renderer": "17.0.0"

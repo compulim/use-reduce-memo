@@ -1,15 +1,9 @@
+import testFacility from '@jest/globals';
 import { scenario } from '@testduet/given-when-then';
 import { expect } from 'expect';
-import * as nodeTest from 'node:test';
 import { mock } from 'node:test';
-import { importRenderHook, type RenderHook } from '../../importRenderHook.ts';
+import { renderHook } from '../../tests/renderHook.ts';
 import useReduceMemo from '../useReduceMemo.ts';
-
-let renderHook: RenderHook;
-
-nodeTest.beforeEach(async () => {
-  renderHook = await importRenderHook();
-});
 
 scenario(
   'call twice with array with same content',
@@ -65,5 +59,5 @@ scenario(
           [3, 3, 2, [1, 2, 3]]
         ])
       ),
-  nodeTest
+  testFacility
 );

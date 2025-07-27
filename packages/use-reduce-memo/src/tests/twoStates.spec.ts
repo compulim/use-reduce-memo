@@ -1,7 +1,7 @@
+import testFacility from '@jest/globals';
 import { scenario } from '@testduet/given-when-then';
 import { act, cleanup, render } from '@testing-library/react';
 import { expect } from 'expect';
-import * as nodeTest from 'node:test';
 import { mock } from 'node:test';
 import { createElement, Fragment, useState } from 'react';
 import useReduceMemo from '../useReduceMemo.ts';
@@ -97,5 +97,5 @@ scenario(
           [6, 6, 2, [2, 4, 6]]
         ]);
       }),
-  nodeTest
+  testFacility
 );

@@ -42,12 +42,16 @@
   },
   "switch:react-18": {
     "devDependencies": {
+      "@testing-library/react": "^15",
       "@types/react": "^18",
       "react": "18.0.0",
       "react-test-renderer": "18.0.0"
     }
   },
   "pinDependencies": {
+    "@testing-library/react": [
+      "15"
+    ],
     "@testduet/wait-for": [
       "main"
     ],
@@ -74,6 +78,7 @@
     "@happy-dom/global-registrator": "^18.0.1",
     "@happy-dom/jest-environment": "^18.0.1",
     "@testduet/wait-for": "^0.1.1-main.3a4f261",
+    "@testing-library/react": "^15.0.7",
     "@tsconfig/strictest": "^2.0.5",
     "@types/jest": "^30.0.0",
     "@types/react": "^18.3.23",

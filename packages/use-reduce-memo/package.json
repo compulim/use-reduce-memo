@@ -73,6 +73,7 @@
   },
   "switch:react-18": {
     "devDependencies": {
+      "@testing-library/react": "^15",
       "@types/react": "^18",
       "@types/react-dom": "^18",
       "react": "18.0.0",
@@ -81,6 +82,9 @@
     }
   },
   "pinDependencies": {
+    "@testing-library/react": [
+      "15"
+    ],
     "@testduet/given-when-then": [
       "main"
     ],

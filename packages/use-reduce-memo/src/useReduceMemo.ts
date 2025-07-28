@@ -70,12 +70,11 @@ function useReduceMemo<T, U>(
 ): U | undefined {
   const state = useMemoWithPrevious<readonly Entry<T, U>[]>(
     (state = Object.freeze([])) => {
+      const nextState: Entry<T, U>[] = [];
       let changed = false;
+      let index = 0;
       let prevValue: U | undefined = initialValue;
       let shouldRecompute = false;
-
-      let index = 0;
-      let nextState: Entry<T, U>[] = [];
 
       for (const value of array) {
         const entry = state[+index];

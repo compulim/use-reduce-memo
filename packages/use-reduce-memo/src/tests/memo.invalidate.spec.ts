@@ -23,7 +23,10 @@ scenario(
               | readonly [Iterable<number>, Iterable<number>]
           })
         ],
-        ['an iterable', ({ reducer }) => ({ reducer, targets: [arrayAsIterable([1, 2, 3]), arrayAsIterable([])] as const })]
+        [
+          'an iterable',
+          ({ reducer }) => ({ reducer, targets: [arrayAsIterable([1, 2, 3]), arrayAsIterable([])] as const })
+        ]
       ])
 
       // ---

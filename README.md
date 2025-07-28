@@ -52,7 +52,7 @@ In contrast, a memoized reducer could be turned into a memoized mapper. Thus, it
 
 ### How is the memoized result invalidated?
 
-Each element in the array is *memoized individually and sequentially*. The equality check includes:
+Each element in the array is _memoized individually and sequentially_. The equality check includes:
 
 - The element value
 - The `callbackfn`
@@ -61,11 +61,12 @@ The equality check is performed by the [`Object.is`](https://developer.mozilla.o
 
 Given same instance of `callbackfn`:
 
-- `[1, 2, 3]` followed by `[1, 2, 3, 4]` will call reducer 4 times with: 1, 2, 3, 4
-- `[1, 2, 3]` followed by `[1, 2, 2.5, 3]` will call reducer 5 times with: 1, 2, 3, 2.5, 3
-- `[1, 2, 3]` followed by `[1, 2]` will call reducer 3 times with: 1, 2, 3
-- `[1, 2, 3]` followed by `[]`, then followed by `[1, 2, 3]` will call reducer 6 times with: 1, 2, 3, 1, 2, 3
-- `[1, 2, 3]` followed by `[0, 1, 2, 3]` will call reducer 7 times with: 1, 2, 3, 0, 1, 2, 3
+- `[1, 2, 3]` followed by `[1, 2, 3, 4]` will call reducer 4 times with: `1, 2, 3, 4`
+- `[1, 2, 3]` followed by `[1, 2, 4]` will call reducer 4 times with: `1, 2, 3, 4`
+- `[1, 2, 3]` followed by `[1, 2, 2.5, 3]` will call reducer 5 times with: `1, 2, 3, 2.5, 3`
+- `[1, 2, 3]` followed by `[1, 2]` will call reducer 3 times with: `1, 2, 3`
+- `[1, 2, 3]` followed by `[]`, then followed by `[1, 2, 3]` will call reducer 6 times with: `1, 2, 3, 1, 2, 3`
+- `[1, 2, 3]` followed by `[0, 1, 2, 3]` will call reducer 7 times with: `1, 2, 3, 0, 1, 2, 3`
 
 ## Contributions
 

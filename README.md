@@ -44,7 +44,9 @@ Notes: `callbackfn` should be memoized with [`useCallback`](https://react.dev/re
 
 ## Design
 
-We started the journey with a memoized mapper hook. However, the mapper only performs operations on the item itself. In some cases, the mapper can be refactored into multiple components, each with its own [`useMemo`](https://react.dev/reference/react/useMemo). The usefulness of a memoized mapper is limited.
+We started the journey with a memoized mapper hook.
+
+A mapper operates independently on each item, without requiring knowledge of other elements. Thus, in some cases, the mapper can be refactored into multiple components, each with their own call to [`useMemo`](https://react.dev/reference/react/useMemo). This limits the true utility of a memoized mapper.
 
 In contrast, a memoized reducer could be turned into a memoized mapper. Thus, it shines in more scenarios.
 

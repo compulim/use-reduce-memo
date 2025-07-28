@@ -50,9 +50,9 @@ In contrast, a memoized reducer could be turned into a memoized mapper. Thus, it
 
 ## Behaviors
 
-### How would the memoized result gets invalidate?
+### How is the memoized result invalidated?
 
-Every element in the array is memoized sequentially, the equality check includes:
+Each element in the array is *memoized individually and sequentially*. The equality check includes:
 
 - The element value
 - The `callbackfn`

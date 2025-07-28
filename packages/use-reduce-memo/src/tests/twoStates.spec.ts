@@ -4,6 +4,7 @@ import { act, cleanup, render } from '@testing-library/react';
 import { expect } from 'expect';
 import { mock } from 'node:test';
 import { createElement, Fragment, useState } from 'react';
+import arrayAsIterable from '../../tests/arrayAsIterable.ts';
 import useReduceMemo from '../useReduceMemo.ts';
 
 scenario(
@@ -13,11 +14,27 @@ scenario(
       .given('a summation reducer', () => ({
         reducer: mock.fn<(result: number, value: number) => number>((result, value) => value + result)
       }))
+      .and.oneOf([
+        [
+          'an array',
+          ({ reducer }) => ({
+            reducer,
+            targets: [
+              [1, 2, 3],
+              [2, 4, 6]
+            ] as readonly [readonly number[], readonly number[]] | readonly [Iterable<number>, Iterable<number>]
+          })
+        ],
+        [
+          'an iterable',
+          ({ reducer }) => ({ reducer, targets: [arrayAsIterable([1, 2, 3]), arrayAsIterable([2, 4, 6])] as const })
+        ]
+      ])
 
       // ---
 
-      .and('with TestComponent with useState', ({ reducer }) => {
-        function TestComponent({ values }: { readonly values: readonly number[] }) {
+      .and('with TestComponent with useState', ({ reducer, targets }) => {
+        function TestComponent({ values }: { readonly values: readonly number[] | Iterable<number> }) {
           const result = useReduceMemo(values, reducer, 0);
           const [state, setState] = useState(1);
 
@@ -36,14 +53,14 @@ scenario(
           );
         }
 
-        return { reducer, TestComponent };
+        return { reducer, targets, TestComponent };
       })
 
       // ---
 
       .when(
         'is being rendered with [1, 2, 3]',
-        ({ TestComponent }) => render(createElement(TestComponent, { values: [1, 2, 3] })),
+        ({ targets, TestComponent }) => render(createElement(TestComponent, { values: targets[0] })),
         cleanup
       )
       .then('textContent should match', (_, result) => {
@@ -52,11 +69,11 @@ scenario(
       .and('reducer should have been called 3 times', ({ reducer }) => {
         expect(reducer.mock.callCount()).toBe(3);
       })
-      .and('reducer should have been called with matching arguments', ({ reducer }) => {
+      .and('reducer should have been called with matching arguments', ({ reducer, targets }) => {
         expect(reducer.mock.calls.map(call => call.arguments)).toEqual([
-          [0, 1, 0, [1, 2, 3]],
-          [1, 2, 1, [1, 2, 3]],
-          [3, 3, 2, [1, 2, 3]]
+          [0, 1, 0, targets[0]],
+          [1, 2, 1, targets[0]],
+          [3, 3, 2, targets[0]]
         ]);
       })
 
@@ -76,8 +93,8 @@ scenario(
 
       // ---
 
-      .when('the values array changed to [2, 4, 6]', ({ TestComponent }, result) => {
-        result.rerender(createElement(TestComponent, { values: [2, 4, 6] }));
+      .when('the values array changed to [2, 4, 6]', ({ targets, TestComponent }, result) => {
+        result.rerender(createElement(TestComponent, { values: targets[1] }));
 
         return result;
       })
@@ -87,14 +104,14 @@ scenario(
       .and('reducer should not have been called', ({ reducer }) => {
         expect(reducer.mock.callCount()).toBe(6);
       })
-      .and('reducer should have been called with matching arguments', ({ reducer }) => {
+      .and('reducer should have been called with matching arguments', ({ reducer, targets }) => {
         expect(reducer.mock.calls.map(call => call.arguments)).toEqual([
-          [0, 1, 0, [1, 2, 3]],
-          [1, 2, 1, [1, 2, 3]],
-          [3, 3, 2, [1, 2, 3]],
-          [0, 2, 0, [2, 4, 6]],
-          [2, 4, 1, [2, 4, 6]],
-          [6, 6, 2, [2, 4, 6]]
+          [0, 1, 0, targets[0]],
+          [1, 2, 1, targets[0]],
+          [3, 3, 2, targets[0]],
+          [0, 2, 0, targets[1]],
+          [2, 4, 1, targets[1]],
+          [6, 6, 2, targets[1]]
         ]);
       }),
   testFacility

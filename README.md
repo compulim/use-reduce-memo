@@ -6,7 +6,7 @@
 
 [`useMemo`](https://react.dev/reference/react/useMemo) remembers the result of a single operation. This is sometimes insufficient for complex applications. Multiple components could be used to house individual operation, this may not be desirable in some cases.
 
-`useReduceMemo` is similar to [`Array.reduce`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce), which operations are performed on every element and the result is memoized. In the next render, if the operation has already performed on the same element, it will be skipped.
+`useReduceMemo` is similar to [`Array.reduce`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce) and [`Iterator.reduce`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator/reduce), which perform operations on every element and the result is memoized. In the next render, if the operation has already performed on the same element, it will be skipped.
 
 ## Demo
 

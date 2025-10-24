@@ -6,7 +6,16 @@ export default defineConfig([
     entry: {
       'use-reduce-memo': './src/index.ts',
     },
-    format: ['cjs', 'esm'],
+    format: ['cjs'],
+    sourcemap: true,
+    target: 'es2019' // Transforms optional chaining for Webpack 4.
+  },
+  {
+    dts: true,
+    entry: {
+      'use-reduce-memo': './src/index.ts',
+    },
+    format: ['esm'],
     sourcemap: true,
     target: 'esnext'
   }

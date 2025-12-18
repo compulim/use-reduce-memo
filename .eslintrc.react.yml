@@ -3,6 +3,7 @@ extends:
   - plugin:react-hooks/recommended
 plugins:
   - react
+  - react-hooks
 settings:
   react:
     version: 18.3.1

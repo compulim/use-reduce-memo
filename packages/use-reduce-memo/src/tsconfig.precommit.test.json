@@ -6,18 +6,11 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "noEmit": true,
+    "noImplicitAny": false,
     "strict": true,
     "target": "ESNext",
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
   "extends": "@tsconfig/recommended/tsconfig.json",
-  "include": [
-    "**/*.spec.ts",
-    "**/*.spec.tsx",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "__tests__/**/*"
-  ]
+  "include": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx", "__tests__/**/*"]
 }

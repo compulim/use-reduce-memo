@@ -3,6 +3,7 @@
   "version": "0.0.0-0",
   "description": "`useReduceMemo` is a React Hook that lets you cache the result of a reduce function between re-renders.",
   "files": [
+    "./*.js",
     "./dist/"
   ],
   "exports": {

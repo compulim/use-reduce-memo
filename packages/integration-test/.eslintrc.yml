@@ -6,6 +6,7 @@ overrides:
   - env:
       commonjs: true
     files:
+      - '**/*.cjs'
       - '**/*.js'
   - files:
       - '**/*.mjs'

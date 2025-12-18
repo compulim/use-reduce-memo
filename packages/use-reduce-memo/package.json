@@ -126,7 +126,7 @@
     "esbuild": "^0.25.8",
     "escape-string-regexp": "^4.0.0",
     "expect": "^30.0.5",
-    "happy-dom": "^18.0.1",
+    "happy-dom": "^20.0.2",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
     "prettier": "^3.6.2",

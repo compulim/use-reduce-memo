@@ -1,1 +1,1 @@
-FROM --platform=linux/amd64 mcr.microsoft.com/devcontainers/typescript-node:20
+FROM --platform=linux/amd64 mcr.microsoft.com/devcontainers/typescript-node:24-bookworm

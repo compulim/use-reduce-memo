@@ -1,11 +1,13 @@
-import testFacility from '@jest/globals';
 import { scenario } from '@testduet/given-when-then';
 import { act, cleanup, render } from '@testing-library/react';
 import { expect } from 'expect';
-import { mock } from 'node:test';
-import { createElement, Fragment, useState } from 'react';
+import testFacility, { mock } from 'node:test';
+import React from 'react';
 import arrayAsIterable from '../../tests/arrayAsIterable.ts';
 import useReduceMemo from '../useReduceMemo.ts';
+
+// react@16 has bad exports that would fail with Node.js test runner, we need to import from root.
+const { createElement, Fragment, useState } = React;
 
 scenario(
   'call twice with array with same content',

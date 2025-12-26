@@ -1,4 +1,4 @@
-import testFacility from '@jest/globals';
+import testFacility from 'node:test';
 import { scenario } from '@testduet/given-when-then';
 import { expect } from 'expect';
 import { mock } from 'node:test';
@@ -18,15 +18,14 @@ scenario(
           'an array',
           ({ reducer }) => ({
             reducer,
-            targets: [
-              [1, 2, 3],
-              [0, 3, 3]
-            ] as readonly [readonly number[], readonly number[]] | readonly [Iterable<number>, Iterable<number>]
+            targets: [[1, 2, 3], []] as
+              | readonly [readonly number[], readonly number[]]
+              | readonly [Iterable<number>, Iterable<number>]
           })
         ],
         [
           'an iterable',
-          ({ reducer }) => ({ reducer, targets: [arrayAsIterable([1, 2, 3]), arrayAsIterable([0, 3, 3])] as const })
+          ({ reducer }) => ({ reducer, targets: [arrayAsIterable([1, 2, 3]), arrayAsIterable([])] as const })
         ]
       ])
 
@@ -49,8 +48,18 @@ scenario(
 
       // ---
 
-      .when('rendered with [0, 3, 3]', ({ reducer, targets }, result) => {
-        result.rerender({ target: targets[1], reducer });
+      .when('rendered with []', ({ reducer, targets }, result) => {
+        result.rerender({ reducer, target: targets[1] });
+
+        return result;
+      })
+      .then('result should return 0', (_, result) => expect(result.result).toHaveProperty('current', 0))
+      .and('reducer should have been called 3 times', ({ reducer }) => expect(reducer.mock.callCount()).toBe(3))
+
+      // ---
+
+      .when('rendered with [1, 2, 3] again', ({ reducer, targets }, result) => {
+        result.rerender({ reducer, target: targets[0] });
 
         return result;
       })
@@ -61,9 +70,9 @@ scenario(
           [0, 1, 0, targets[0]],
           [1, 2, 1, targets[0]],
           [3, 3, 2, targets[0]],
-          [0, 0, 0, targets[1]],
-          [0, 3, 1, targets[1]],
-          [3, 3, 2, targets[1]]
+          [0, 1, 0, targets[0]],
+          [1, 2, 1, targets[0]],
+          [3, 3, 2, targets[0]]
         ])
       ),
   testFacility

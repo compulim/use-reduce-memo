@@ -35,7 +35,7 @@
     "switch": "npm run switch:react && npm run switch:testing-library",
     "switch:react": "cat package.json | jq --arg SWITCH_NAME $SWITCH_NAME -r '(.[\"switch:\" + $SWITCH_NAME] // {}) as $TEMPLATE | .devDependencies += ($TEMPLATE.devDependencies // {}) | .dependencies += ($TEMPLATE.dependencies // {})' | tee ./package.json.tmp && mv ./package.json.tmp ./package.json",
     "switch:testing-library": "cp ./tests/renderHook.$SWITCH_NAME.ts ./tests/renderHook.ts",
-    "test": "jest"
+    "test": "node --import ./happy-dom.import.mjs --test"
   },
   "repository": {
     "type": "git",
@@ -57,9 +57,10 @@
       "@testing-library/react": "^12",
       "@types/react": "^16",
       "@types/react-dom": "^16",
-      "react": "16.8.0",
-      "react-dom": "16.8.0",
-      "react-test-renderer": "16.8.0"
+      "@types/react-test-renderer": "^16",
+      "react": "16.8.6",
+      "react-dom": "16.8.6",
+      "react-test-renderer": "16.8.6"
     }
   },
   "switch:react-17": {
@@ -67,6 +68,7 @@
       "@testing-library/react": "^12",
       "@types/react": "^17",
       "@types/react-dom": "^17",
+      "@types/react-test-renderer": "^17",
       "react": "17.0.0",
       "react-dom": "17.0.0",
       "react-test-renderer": "17.0.0"
@@ -77,6 +79,7 @@
       "@testing-library/react": "^15",
       "@types/react": "^18",
       "@types/react-dom": "^18",
+      "@types/react-test-renderer": "^18",
       "react": "18.0.0",
       "react-dom": "18.0.0",
       "react-test-renderer": "18.0.0"
@@ -86,22 +89,16 @@
     "@testing-library/react": [
       "15"
     ],
-    "@testduet/given-when-then": [
-      "main"
-    ],
-    "@testduet/wait-for": [
-      "main"
-    ],
     "@types/react": [
+      "18"
+    ],
+    "@types/react-test-renderer": [
       "18"
     ],
     "escape-string-regexp": [
       "4"
     ],
     "react": [
-      "18"
-    ],
-    "react-dom": [
       "18"
     ],
     "react-test-renderer": [
@@ -113,23 +110,19 @@
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
     "@fluentui/react": "^8.123.1",
-    "@happy-dom/global-registrator": "^18.0.1",
-    "@happy-dom/jest-environment": "^18.0.1",
+    "@happy-dom/global-registrator": "^20.0.11",
     "@testduet/given-when-then": "^0.1.1-main.28754e6",
     "@testduet/wait-for": "^0.1.1-main.3a4f261",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.3.0",
     "@tsconfig/recommended": "^1.0.10",
     "@tsconfig/strictest": "^2.0.5",
-    "@types/jest": "^30.0.0",
     "@types/node": "^24.0.15",
     "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
     "esbuild": "^0.25.8",
     "escape-string-regexp": "^4.0.0",
-    "expect": "^30.0.5",
-    "happy-dom": "^20.0.2",
-    "jest": "^30.0.5",
-    "jest-environment-jsdom": "^30.0.5",
+    "expect": "^30.2.0",
     "prettier": "^3.6.2",
     "publint": "^0.3.12",
     "react": "^18.3.1",
@@ -141,7 +134,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": ">=16.8.6"
   },
   "dependencies": {
     "handler-chain": "^0.1.1",

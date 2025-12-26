@@ -1,4 +1,4 @@
-import testFacility from '@jest/globals';
+import testFacility from 'node:test';
 import { scenario } from '@testduet/given-when-then';
 import { expect } from 'expect';
 import { mock } from 'node:test';
@@ -7,7 +7,7 @@ import { renderHook } from '../../tests/renderHook.ts';
 import useReduceMemo from '../useReduceMemo.ts';
 
 scenario(
-  'simple',
+  're-render with shorter array',
   bdd =>
     bdd
       .given('a summation reducer', () => ({
@@ -20,13 +20,13 @@ scenario(
             reducer,
             targets: [
               [1, 2, 3],
-              [1, 2, 4]
+              [1, 2]
             ] as readonly [readonly number[], readonly number[]] | readonly [Iterable<number>, Iterable<number>]
           })
         ],
         [
           'an iterable',
-          ({ reducer }) => ({ reducer, targets: [arrayAsIterable([1, 2, 3]), arrayAsIterable([1, 2, 4])] as const })
+          ({ reducer }) => ({ reducer, targets: [arrayAsIterable([1, 2, 3]), arrayAsIterable([1, 2])] as const })
         ]
       ])
 
@@ -49,20 +49,12 @@ scenario(
 
       // ---
 
-      .when('rendered with [1, 2, 4]', ({ reducer, targets }, result) => {
+      .when('rendered with [1, 2]', ({ reducer, targets }, result) => {
         result.rerender({ reducer, target: targets[1] });
 
         return result;
       })
-      .then('result should return 7', (_, result) => expect(result.result).toHaveProperty('current', 7))
-      .and('reducer should have been called 4 times', ({ reducer }) => expect(reducer.mock.callCount()).toBe(4))
-      .and('reducer should have been called with matching arguments', ({ reducer, targets }) =>
-        expect(reducer.mock.calls.map(call => call.arguments)).toEqual([
-          [0, 1, 0, targets[0]],
-          [1, 2, 1, targets[0]],
-          [3, 3, 2, targets[0]],
-          [3, 4, 2, targets[1]]
-        ])
-      ),
+      .then('result should return 3', (_, result) => expect(result.result).toHaveProperty('current', 3))
+      .and('reducer should not have been called', ({ reducer }) => expect(reducer.mock.callCount()).toBe(3)),
   testFacility
 );

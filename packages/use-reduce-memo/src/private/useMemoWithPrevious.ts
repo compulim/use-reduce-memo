@@ -1,4 +1,7 @@
-import { useEffect, useMemo, useRef, type DependencyList } from 'react';
+import React, { type DependencyList } from 'react';
+
+// react@16 has bad exports that would fail with Node.js test runner, we need to import from root.
+const { useEffect, useMemo, useRef } = React;
 
 export default function useMemoWithPrevious<T>(factory: (prevValue: T | undefined) => T, deps: DependencyList): T {
   const prevValueRef = useRef<T | undefined>(undefined);

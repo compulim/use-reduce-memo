@@ -35,7 +35,7 @@
     "switch": "npm run switch:react && npm run switch:testing-library",
     "switch:react": "cat package.json | jq --arg SWITCH_NAME $SWITCH_NAME -r '(.[\"switch:\" + $SWITCH_NAME] // {}) as $TEMPLATE | .devDependencies += ($TEMPLATE.devDependencies // {}) | .dependencies += ($TEMPLATE.dependencies // {})' | tee ./package.json.tmp && mv ./package.json.tmp ./package.json",
     "switch:testing-library": "cp ./tests/renderHook.$SWITCH_NAME.ts ./tests/renderHook.ts",
-    "test": "node --import ./happy-dom.import.ts --test **/*.{spec,test}.{[jt]s,[jt]sx,c[jt]s,m[jt]s}"
+    "test": "node --import ./happy-dom.import.mjs --test"
   },
   "repository": {
     "type": "git",

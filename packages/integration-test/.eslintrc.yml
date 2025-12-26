@@ -1,7 +1,8 @@
 extends:
   - ./.eslintrc.custom.yml
 ignorePatterns:
-  - test/webDriver/static/**
+  - webDriver/**
+  - '*.react-*.*'
 overrides:
   - env:
       commonjs: true

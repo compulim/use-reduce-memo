@@ -18,7 +18,7 @@
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
   "localPeerDependencies": {
-    "use-reduce-memo": "^0.0.0-0"
+    "use-reduce-memo": "0.0.0-0"
   },
   "switch:react-16": {
     "devDependencies": {
@@ -65,22 +65,22 @@
     ]
   },
   "devDependencies": {
-    "@fluentui/react": "^8.123.1",
-    "@tsconfig/strictest": "^2.0.5",
-    "@types/react": "^18.3.23",
+    "@fluentui/react": "^8.125.3",
+    "@tsconfig/strictest": "^2.0.8",
+    "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
-    "esbuild": "^0.25.8",
-    "react-wrap-with": "^0.1.0",
-    "typescript": "^5.8.3"
+    "esbuild": "^0.27.2",
+    "react-wrap-with": "^0.2.0",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "classnames": "^2.5.1",
     "micromark": "^4.0.2",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "shiki": "^3.8.1",
-    "use-reduce-memo": "^0.0.0-0",
+    "shiki": "^3.20.0",
+    "use-reduce-memo": "0.0.0-0",
     "valibot": "^1.2.0"
   }
 }

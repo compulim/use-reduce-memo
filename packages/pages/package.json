@@ -18,7 +18,7 @@
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
   "localPeerDependencies": {
-    "use-reduce-memo": "^0.0.0-0"
+    "use-reduce-memo": "0.0.0-0"
   },
   "switch:react-16": {
     "devDependencies": {
@@ -80,7 +80,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "shiki": "^3.20.0",
-    "use-reduce-memo": "^0.0.0-0",
+    "use-reduce-memo": "0.0.0-0",
     "valibot": "^1.2.0"
   }
 }

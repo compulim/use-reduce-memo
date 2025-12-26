@@ -20,7 +20,7 @@
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
   "localPeerDependencies": {
-    "use-reduce-memo": "^0.0.0-0"
+    "use-reduce-memo": "0.0.0-0"
   },
   "switch:react-16": {
     "devDependencies": {
@@ -92,6 +92,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "use-reduce-memo": "^0.0.0-0"
+    "use-reduce-memo": "0.0.0-0"
   }
 }

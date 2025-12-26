@@ -83,12 +83,6 @@
     "@testing-library/react": [
       "15"
     ],
-    "@testduet/given-when-then": [
-      "main"
-    ],
-    "@testduet/wait-for": [
-      "main"
-    ],
     "@types/react": [
       "18"
     ],

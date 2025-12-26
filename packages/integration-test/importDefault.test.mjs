@@ -1,9 +1,9 @@
-import testFacility from '@jest/globals';
+import testFacility from 'node:test';
 import { scenario } from '@testduet/given-when-then';
 import { expect } from 'expect';
 import { mock } from 'node:test';
 import { useReduceMemo } from 'use-reduce-memo';
-import { renderHook } from './renderHook';
+import { renderHook } from './renderHook.mjs';
 
 scenario(
   'basic scenario',

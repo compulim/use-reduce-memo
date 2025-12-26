@@ -1,4 +1,4 @@
-import testFacility from '@jest/globals';
+import testFacility from 'node:test';
 import { scenario } from '@testduet/given-when-then';
 import { act, cleanup, render } from '@testing-library/react';
 import { expect } from 'expect';

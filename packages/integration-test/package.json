@@ -15,7 +15,7 @@
     "switch": "npm run switch:react && npm run switch:testing-library",
     "switch:react": "cat package.json | jq --arg SWITCH_NAME $SWITCH_NAME -r '(.[\"switch:\" + $SWITCH_NAME] // {}) as $TEMPLATE | .devDependencies += ($TEMPLATE.devDependencies // {}) | .dependencies += ($TEMPLATE.dependencies // {})' | tee ./package.json.tmp && mv ./package.json.tmp ./package.json",
     "switch:testing-library": "cp ./renderHook.$SWITCH_NAME.cjs ./renderHook.cjs && cp ./renderHook.$SWITCH_NAME.mjs ./renderHook.mjs",
-    "test": "jest"
+    "test": "node --import ./happy-dom-env.ts --test ${CI:---watch} **/*.{spec,test}.{[jt]s,[jt]sx,c[jt]s,m[jt]s}"
   },
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
@@ -75,8 +75,6 @@
     "@babel/preset-env": "^7.28.5",
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
-    "@happy-dom/global-registrator": "^20.0.11",
-    "@happy-dom/jest-environment": "^20.0.11",
     "@testduet/given-when-then": "^0.1.0",
     "@testduet/wait-for": "^0.1.2-main.202512220309.d045537",
     "@testing-library/react": "^15.0.7",
@@ -84,8 +82,8 @@
     "@types/jest": "^30.0.0",
     "@types/react": "^18.3.27",
     "@types/react-test-renderer": "^19.1.0",
-    "happy-dom": "^20.0.11",
-    "jest": "^30.2.0",
+    "expect": "^30.2.0",
+    "jest-mock": "^30.2.0",
     "react": "^18.3.1",
     "react-test-renderer": "^18.3.1",
     "resolve-cwd": "^3.0.0",

@@ -1,4 +1,4 @@
-import testFacility from '@jest/globals';
+import testFacility from 'node:test';
 import { scenario } from '@testduet/given-when-then';
 import { expect } from 'expect';
 import { mock } from 'node:test';

@@ -1,9 +1,9 @@
-const testFacility = require('@jest/globals');
+const testFacility = require('node:test');
 const { scenario } = require('@testduet/given-when-then');
 const { expect } = require('expect');
 const { mock } = require('node:test');
 const { useReduceMemo } = require('use-reduce-memo');
-const { renderHook } = require('./renderHook');
+const { renderHook } = require('./renderHook.cjs');
 
 scenario(
   'basic scenario',

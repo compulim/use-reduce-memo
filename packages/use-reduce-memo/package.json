@@ -123,7 +123,6 @@
     "@testing-library/react": "^16.3.0",
     "@tsconfig/recommended": "^1.0.10",
     "@tsconfig/strictest": "^2.0.5",
-    "@types/jest": "^30.0.0",
     "@types/node": "^24.0.15",
     "@types/react": "^18.3.23",
     "esbuild": "^0.25.8",

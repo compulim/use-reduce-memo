@@ -1,5 +1,5 @@
 {
-  "name": "@compulim/use-reduce-memo-pages",
+  "name": "@compulim/pages",
   "version": "0.0.0-0",
   "description": "",
   "private": true,
@@ -67,6 +67,7 @@
       "18"
     ]
   },
+  "peerDependencies": {},
   "devDependencies": {
     "@fluentui/react": "^8.125.3",
     "@tsconfig/strictest": "^2.0.8",
@@ -85,7 +86,5 @@
     "shiki": "^3.20.0",
     "use-reduce-memo": "0.0.0-0",
     "valibot": "^1.2.0"
-  },
-  "exports": {},
-  "peerDependencies": {}
+  }
 }

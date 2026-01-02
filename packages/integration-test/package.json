@@ -1,8 +1,14 @@
 {
-  "name": "@compulim/use-reduce-memo-integration-test",
+  "name": "@compulim/integration-test",
   "version": "0.0.0-0",
   "description": "",
   "private": true,
+  "files": [
+    "**/*.cjs",
+    "**/*.js",
+    "**/*.mjs",
+    "webDriver/**/*"
+  ],
   "scripts": {
     "build": "npm run build:copy && npm run build:custom --if-present",
     "build:copy": "mkdir -p ./webDriver/static/; SRC=$(node --eval=\"console.log(require('path').resolve(require('resolve-cwd')('use-reduce-memo'), '../../dist'))\"); DEST=$(realpath ./webDriver/static); rm -rf $DEST; mkdir -p $DEST/js/; cp $SRC/** $DEST/js/",
@@ -25,19 +31,10 @@
   },
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
-  "localPeerDependencies": {
-    "@compulim/test-harness": "0.0.0-0",
-    "use-reduce-memo": "0.0.0-0"
-  },
   "switch:react-16": {
     "devDependencies": {
-      "@testing-library/react": "^12",
-      "@testing-library/react-hooks": "latest",
       "@types/react": "^16",
       "@types/react-dom": "^16",
-      "react": "16.8.6",
-      "react-dom": "16.8.6",
-      "react-test-renderer": "16.8.6",
       "@types/react-test-renderer": "^16"
     },
     "dependencies": {
@@ -48,13 +45,8 @@
   },
   "switch:react-17": {
     "devDependencies": {
-      "@testing-library/react": "^12",
-      "@testing-library/react-hooks": "latest",
       "@types/react": "^17",
       "@types/react-dom": "^17",
-      "react": "17.0.0",
-      "react-dom": "17.0.0",
-      "react-test-renderer": "17.0.0",
       "@types/react-test-renderer": "^17"
     },
     "dependencies": {
@@ -65,12 +57,8 @@
   },
   "switch:react-18": {
     "devDependencies": {
-      "@testing-library/react": "^15",
       "@types/react": "^18",
       "@types/react-dom": "^18",
-      "react": "18.0.0",
-      "react-dom": "18.0.0",
-      "react-test-renderer": "18.0.0",
       "@types/react-test-renderer": "^18"
     },
     "dependencies": {
@@ -80,13 +68,13 @@
     }
   },
   "pinDependencies": {
-    "@testing-library/react": [
-      "15"
-    ],
     "@types/react": [
       "18"
     ],
     "@types/react-dom": [
+      "18"
+    ],
+    "@types/react-test-renderer": [
       "18"
     ],
     "react": [
@@ -97,19 +85,15 @@
     ],
     "react-test-renderer": [
       "18"
-    ],
-    "@types/react-test-renderer": [
-      "18"
     ]
   },
+  "localPeerDependencies": {
+    "@compulim/test-harness": "0.0.0-0",
+    "use-reduce-memo": "0.0.0-0"
+  },
   "devDependencies": {
-    "@babel/preset-env": "^7.28.5",
-    "@babel/preset-react": "^7.28.5",
-    "@babel/preset-typescript": "^7.28.5",
-    "@happy-dom/global-registrator": "^20.0.11",
+    "@compulim/test-harness": "0.0.0-0",
     "@testduet/given-when-then": "^0.1.0",
-    "@testduet/wait-for": "^0.1.2-main.202512220309.d045537",
-    "@testing-library/react": "^15.0.7",
     "@tsconfig/strictest": "^2.0.8",
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
@@ -123,13 +107,5 @@
   },
   "dependencies": {
     "use-reduce-memo": "0.0.0-0"
-  },
-  "files": [
-    "**/*.cjs",
-    "**/*.js",
-    "**/*.mjs",
-    "webDriver/**/*"
-  ],
-  "exports": {},
-  "peerDependencies": {}
+  }
 }

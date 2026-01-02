@@ -3,8 +3,8 @@ import { act, cleanup, render } from '@testing-library/react';
 import { expect } from 'expect';
 import testFacility, { mock } from 'node:test';
 import React from 'react';
-import arrayAsIterable from '../../tests/arrayAsIterable.ts';
 import useReduceMemo from '../useReduceMemo.ts';
+import arrayAsIterable from './arrayAsIterable.ts';
 
 // react@16 has bad exports that would fail with Node.js test runner, we need to import from root.
 const { createElement, Fragment, useState } = React;

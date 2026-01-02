@@ -67,9 +67,7 @@
       "18"
     ]
   },
-  "peerDependencies": {},
   "devDependencies": {
-    "@fluentui/react": "^8.125.3",
     "@tsconfig/strictest": "^2.0.8",
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",

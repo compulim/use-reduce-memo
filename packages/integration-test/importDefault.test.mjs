@@ -1,9 +1,8 @@
-import testFacility from 'node:test';
+import { renderHook } from '@compulim/test-harness/renderHook';
 import { scenario } from '@testduet/given-when-then';
 import { expect } from 'expect';
-import { mock } from 'node:test';
+import testFacility, { mock } from 'node:test';
 import { useReduceMemo } from 'use-reduce-memo';
-import { renderHook } from './renderHook.mjs';
 
 scenario(
   'basic scenario',

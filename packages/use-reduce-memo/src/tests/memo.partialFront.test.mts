@@ -1,10 +1,9 @@
-import testFacility from 'node:test';
+import { renderHook } from '@compulim/test-harness/renderHook';
 import { scenario } from '@testduet/given-when-then';
 import { expect } from 'expect';
-import { mock } from 'node:test';
-import arrayAsIterable from '../../tests/arrayAsIterable.ts';
-import { renderHook } from '../../tests/renderHook.ts';
+import testFacility, { mock } from 'node:test';
 import useReduceMemo from '../useReduceMemo.ts';
+import arrayAsIterable from './arrayAsIterable.ts';
 
 scenario(
   'simple',

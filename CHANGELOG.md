@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+| Icon | Description                                       |
+| ---- | ------------------------------------------------- |
+| 💢   | Breaking changes                                  |
+| 👷🏻   | Development experience (non-production impacting) |
+
 ## [Unreleased]
 
 ### Changed
@@ -35,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - [`react-wrap-with@0.2.0`](https://npmjs.com/package/react-wrap-with/v/0.2.0)
     - [`shiki@3.20.0`](https://npmjs.com/package/shiki/v/3.20.0)
     - [`typescript@5.9.3`](https://npmjs.com/package/typescript/v/5.9.3)
-- Moved from Jest to Node.js test runner, by [@compulim](https://github.com/compulim), in PR [#13](https://github.com/compulim/use-reduce-memo/pull/13)
+- 👷🏻 Moved from Jest to Node.js test runner, by [@compulim](https://github.com/compulim), in PR [#13](https://github.com/compulim/use-reduce-memo/pull/13) and [#14](https://github.com/compulim/use-reduce-memo/pull/14)
 
 ## [0.1.0] - 2025-10-24
 

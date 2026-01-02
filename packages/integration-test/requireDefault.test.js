@@ -1,9 +1,9 @@
-const testFacility = require('node:test');
+const { renderHook } = require('@compulim/test-harness/renderHook');
 const { scenario } = require('@testduet/given-when-then');
 const { expect } = require('expect');
+const testFacility = require('node:test');
 const { mock } = require('node:test');
 const { useReduceMemo } = require('use-reduce-memo');
-const { renderHook } = require('./renderHook.cjs');
 
 scenario(
   'basic scenario',

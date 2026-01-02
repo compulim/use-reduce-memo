@@ -7,6 +7,6 @@
     "noEmit": true,
     "target": "esnext"
   },
-  "exclude": ["./webDriver/**/*"],
+  "exclude": ["webDriver/**/*"],
   "extends": "./tsconfig.custom.json"
 }
